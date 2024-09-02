@@ -67,6 +67,8 @@ quantidade_eleitores_filtrados = df_filtered['id'].nunique()
 # Calcular quantos votos faltam para atingir a meta
 votos_faltando = meta_votos - quantidade_total_eleitores
 
+st.image("logo_patielen.png", width=100)
+
 # Exibir a barra de progresso
 st.subheader("Progresso para Atingir a Meta")
 st.progress(porcentagem_atingida / 100)
