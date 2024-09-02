@@ -47,6 +47,7 @@ selected_sexo = st.sidebar.multiselect("Selecione o Gênero", options=df['sexo']
 selected_emprego = st.sidebar.multiselect("Selecione a Situação de Emprego", options=df['situacao_emprego'].unique())
 selected_escolaridade = st.sidebar.multiselect("Selecione a Escolaridade", options=df['escolaridade'].unique())
 selected_secao = st.sidebar.multiselect("Selecione a Seção Eleitoral", options=sorted(df['secao'].unique()))
+selected_lider = st.sidebar.multiselect("Selecione o Líder", options=sorted(df['lider'].unique()))  # Filtro por líder
 
 if selected_bairro:
     df_filtered = df_filtered[df_filtered['bairro'].isin(selected_bairro)]
@@ -60,6 +61,8 @@ if selected_escolaridade:
     df_filtered = df_filtered[df_filtered['escolaridade'].isin(selected_escolaridade)]
 if selected_secao:
     df_filtered = df_filtered[df_filtered['secao'].isin(selected_secao)]
+if selected_lider:
+    df_filtered = df_filtered[df_filtered['lider'].isin(selected_lider)]
 
 # Recalcular a quantidade total de eleitores após filtros
 quantidade_eleitores_filtrados = df_filtered['id'].nunique()
@@ -80,28 +83,64 @@ st.write(f"Faltam **{votos_faltando}** votos para atingir a meta.")
 # Exibir o número total de eleitores (baseado em filtros)
 st.metric(label="Quantidade Total de Eleitores", value=quantidade_eleitores_filtrados)
 
+# Gráfico de distribuição por líder
+st.subheader("Distribuição por Líder")
+lider_counts = df_filtered['lider'].value_counts().reset_index()
+lider_counts.columns = ['Líder', 'Count']
+fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', 
+                   labels={'Líder': 'Líder', 'Count': 'Quantidade de Eleitores'})
+
+# Adicionar as quantidades no final das barras
+fig_lider.update_traces(texttemplate='%{x}', textposition='outside')
+
+st.plotly_chart(fig_lider)
+
 # Gráfico de eleitores por bairro
 st.subheader("Distribuição por Bairro")
-fig_bairro = px.bar(df_filtered['bairro'].value_counts(), orientation='h', 
-                    labels={'index': 'Bairro', 'value': 'Quantidade de Eleitores'})
+bairro_counts = df_filtered['bairro'].value_counts().reset_index()
+bairro_counts.columns = ['Bairro', 'Count']
+fig_bairro = px.bar(bairro_counts, x='Count', y='Bairro', orientation='h', 
+                    labels={'Bairro': 'Bairro', 'Count': 'Quantidade de Eleitores'})
+
+# Adicionar as quantidades no final das barras
+fig_bairro.update_traces(texttemplate='%{x}', textposition='outside')
+
 st.plotly_chart(fig_bairro)
 
 # Gráfico de distribuição por faixa etária
 st.subheader("Distribuição por Faixa Etária")
-fig_faixa_etaria = px.bar(df_filtered['faixa_etaria'].value_counts().reindex(['Menor de 18', '18-25', '26-35', '36-45', '46-60', 'Acima de 60', 'Não informado']), 
-                          orientation='h', labels={'index': 'Faixa Etária', 'value': 'Quantidade de Eleitores'})
+faixa_counts = df_filtered['faixa_etaria'].value_counts().reindex(['Menor de 18', '18-25', '26-35', '36-45', '46-60', 'Acima de 60', 'Não informado']).reset_index()
+faixa_counts.columns = ['Faixa Etária', 'Count']
+fig_faixa_etaria = px.bar(faixa_counts, x='Count', y='Faixa Etária', orientation='h', 
+                          labels={'Faixa Etária': 'Faixa Etária', 'Count': 'Quantidade de Eleitores'})
+
+# Adicionar as quantidades no final das barras
+fig_faixa_etaria.update_traces(texttemplate='%{x}', textposition='outside')
+
 st.plotly_chart(fig_faixa_etaria)
 
 # Gráfico de distribuição por situação de emprego
 st.subheader("Distribuição por Situação de Emprego")
-fig_emprego = px.bar(df_filtered['situacao_emprego'].value_counts(), orientation='h', 
-                     labels={'index': 'Situação de Emprego', 'value': 'Quantidade de Eleitores'})
+emprego_counts = df_filtered['situacao_emprego'].value_counts().reset_index()
+emprego_counts.columns = ['Situação de Emprego', 'Count']
+fig_emprego = px.bar(emprego_counts, x='Count', y='Situação de Emprego', orientation='h', 
+                     labels={'Situação de Emprego': 'Situação de Emprego', 'Count': 'Quantidade de Eleitores'})
+
+# Adicionar as quantidades no final das barras
+fig_emprego.update_traces(texttemplate='%{x}', textposition='outside')
+
 st.plotly_chart(fig_emprego)
 
 # Gráfico de distribuição por escolaridade
 st.subheader("Distribuição por Escolaridade")
-fig_escolaridade = px.bar(df_filtered['escolaridade'].value_counts(), orientation='h', 
-                          labels={'index': 'Escolaridade', 'value': 'Quantidade de Eleitores'})
+escolaridade_counts = df_filtered['escolaridade'].value_counts().reset_index()
+escolaridade_counts.columns = ['Escolaridade', 'Count']
+fig_escolaridade = px.bar(escolaridade_counts, x='Count', y='Escolaridade', orientation='h', 
+                          labels={'Escolaridade': 'Escolaridade', 'Count': 'Quantidade de Eleitores'})
+
+# Adicionar as quantidades no final das barras
+fig_escolaridade.update_traces(texttemplate='%{x}', textposition='outside')
+
 st.plotly_chart(fig_escolaridade)
 
 # Gráfico de Treemap para Seção Eleitoral com Quantidade de Eleitores
@@ -114,6 +153,7 @@ fig_treemap = px.treemap(secao_counts,
                          labels={'Seção Eleitoral': 'Seção Eleitoral', 'Quantidade de Eleitores': 'Quantidade de Eleitores'},
                          color='Quantidade de Eleitores',
                          hover_data={'Quantidade de Eleitores': True})
+
 st.plotly_chart(fig_treemap)
 
 # Gráfico de distribuição por sexo
