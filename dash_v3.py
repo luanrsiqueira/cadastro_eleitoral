@@ -90,6 +90,9 @@ lider_counts.columns = ['Líder', 'Count']
 fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', 
                    labels={'Líder': 'Líder', 'Count': 'Quantidade de Eleitores'})
 
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_lider.update_layout(margin=dict(l=0, r=0, t=30, b=30), height=300)
+
 # Adicionar as quantidades no final das barras
 fig_lider.update_traces(texttemplate='%{x}', textposition='outside')
 
@@ -101,6 +104,9 @@ bairro_counts = df_filtered['bairro'].value_counts().reset_index()
 bairro_counts.columns = ['Bairro', 'Count']
 fig_bairro = px.bar(bairro_counts, x='Count', y='Bairro', orientation='h', 
                     labels={'Bairro': 'Bairro', 'Count': 'Quantidade de Eleitores'})
+
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_bairro.update_layout(margin=dict(l=0, r=0, t=30, b=30), height=300)
 
 # Adicionar as quantidades no final das barras
 fig_bairro.update_traces(texttemplate='%{x}', textposition='outside')
@@ -114,6 +120,9 @@ faixa_counts.columns = ['Faixa Etária', 'Count']
 fig_faixa_etaria = px.bar(faixa_counts, x='Count', y='Faixa Etária', orientation='h', 
                           labels={'Faixa Etária': 'Faixa Etária', 'Count': 'Quantidade de Eleitores'})
 
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_faixa_etaria.update_layout(margin=dict(l=0, r=0, t=30, b=30), height=300)
+
 # Adicionar as quantidades no final das barras
 fig_faixa_etaria.update_traces(texttemplate='%{x}', textposition='outside')
 
@@ -126,6 +135,9 @@ emprego_counts.columns = ['Situação de Emprego', 'Count']
 fig_emprego = px.bar(emprego_counts, x='Count', y='Situação de Emprego', orientation='h', 
                      labels={'Situação de Emprego': 'Situação de Emprego', 'Count': 'Quantidade de Eleitores'})
 
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_emprego.update_layout(margin=dict(l=0, r=0, t=30, b=30), height=300)
+
 # Adicionar as quantidades no final das barras
 fig_emprego.update_traces(texttemplate='%{x}', textposition='outside')
 
@@ -137,6 +149,9 @@ escolaridade_counts = df_filtered['escolaridade'].value_counts().reset_index()
 escolaridade_counts.columns = ['Escolaridade', 'Count']
 fig_escolaridade = px.bar(escolaridade_counts, x='Count', y='Escolaridade', orientation='h', 
                           labels={'Escolaridade': 'Escolaridade', 'Count': 'Quantidade de Eleitores'})
+
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_escolaridade.update_layout(margin=dict(l=0, r=0, t=30, b=30), height=300)
 
 # Adicionar as quantidades no final das barras
 fig_escolaridade.update_traces(texttemplate='%{x}', textposition='outside')
@@ -154,9 +169,16 @@ fig_treemap = px.treemap(secao_counts,
                          color='Quantidade de Eleitores',
                          hover_data={'Quantidade de Eleitores': True})
 
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_treemap.update_layout(margin=dict(l=0, r=0, t=30, b=30), height=300)
+
 st.plotly_chart(fig_treemap)
 
 # Gráfico de distribuição por sexo
 st.subheader("Distribuição por Gênero")
 fig_sexo = px.pie(df_filtered, names='sexo', title='Distribuição por Gênero')
+
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_sexo.update_layout(margin=dict(l=0, r=0, t=30, b=30), height=300)
+
 st.plotly_chart(fig_sexo)
