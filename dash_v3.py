@@ -88,7 +88,7 @@ st.subheader("Distribuição por Líder")
 lider_counts = df_filtered['lider'].value_counts().reset_index()
 lider_counts.columns = ['Líder', 'Count']
 fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', 
-                   labels={'Líder': 'Líder', 'Count': 'Quantidade de Eleitores'})
+                   labels={'Líder': 'Líder', 'Count': 'Eleitores'})
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_lider.update_layout(
@@ -107,7 +107,7 @@ st.subheader("Distribuição por Bairro")
 bairro_counts = df_filtered['bairro'].value_counts().reset_index()
 bairro_counts.columns = ['Bairro', 'Count']
 fig_bairro = px.bar(bairro_counts, x='Count', y='Bairro', orientation='h', 
-                    labels={'Bairro': 'Bairro', 'Count': 'Quantidade de Eleitores'})
+                    labels={'Bairro': 'Bairro', 'Count': 'Eleitores'})
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_bairro.update_layout(
@@ -126,7 +126,7 @@ st.subheader("Distribuição por Faixa Etária")
 faixa_counts = df_filtered['faixa_etaria'].value_counts().reindex(['Menor de 18', '18-25', '26-35', '36-45', '46-60', 'Acima de 60', 'Não informado']).reset_index()
 faixa_counts.columns = ['Faixa Etária', 'Count']
 fig_faixa_etaria = px.bar(faixa_counts, x='Count', y='Faixa Etária', orientation='h', 
-                          labels={'Faixa Etária': 'Faixa Etária', 'Count': 'Quantidade de Eleitores'})
+                          labels={'Faixa Etária': 'Faixa Etária', 'Count': 'Eleitores'})
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_faixa_etaria.update_layout(
@@ -145,7 +145,7 @@ st.subheader("Distribuição por Situação de Emprego")
 emprego_counts = df_filtered['situacao_emprego'].value_counts().reset_index()
 emprego_counts.columns = ['Situação de Emprego', 'Count']
 fig_emprego = px.bar(emprego_counts, x='Count', y='Situação de Emprego', orientation='h', 
-                     labels={'Situação de Emprego': 'Situação de Emprego', 'Count': 'Quantidade de Eleitores'})
+                     labels={'Situação de Emprego': 'Situação de Emprego', 'Count': 'Eleitores'})
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_emprego.update_layout(
@@ -164,7 +164,7 @@ st.subheader("Distribuição por Escolaridade")
 escolaridade_counts = df_filtered['escolaridade'].value_counts().reset_index()
 escolaridade_counts.columns = ['Escolaridade', 'Count']
 fig_escolaridade = px.bar(escolaridade_counts, x='Count', y='Escolaridade', orientation='h', 
-                          labels={'Escolaridade': 'Escolaridade', 'Count': 'Quantidade de Eleitores'})
+                          labels={'Escolaridade': 'Escolaridade', 'Count': 'Eleitores'})
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_escolaridade.update_layout(
@@ -178,16 +178,16 @@ fig_escolaridade.update_traces(texttemplate='%{x}', textposition='outside')
 
 st.plotly_chart(fig_escolaridade)
 
-# Gráfico de Treemap para Seção Eleitoral com Quantidade de Eleitores
+# Gráfico de Treemap para Seção Eleitoral com Eleitores
 st.subheader("Distribuição por Seção Eleitoral (Treemap)")
 secao_counts = df_filtered['secao'].value_counts().reset_index()
-secao_counts.columns = ['Seção Eleitoral', 'Quantidade de Eleitores']
+secao_counts.columns = ['Seção Eleitoral', 'Eleitores']
 fig_treemap = px.treemap(secao_counts, 
                          path=['Seção Eleitoral'], 
-                         values='Quantidade de Eleitores',
-                         labels={'Seção Eleitoral': 'Seção Eleitoral', 'Quantidade de Eleitores': 'Quantidade de Eleitores'},
-                         color='Quantidade de Eleitores',
-                         hover_data={'Quantidade de Eleitores': True})
+                         values='Eleitores',
+                         labels={'Seção Eleitoral': 'Seção Eleitoral', 'Eleitores': 'Eleitores'},
+                         color='Eleitores',
+                         hover_data={'Eleitores': True})
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_treemap.update_layout(
