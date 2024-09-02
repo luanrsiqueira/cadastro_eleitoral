@@ -37,7 +37,7 @@ quantidade_total_eleitores = df['id'].nunique()
 porcentagem_atingida = (quantidade_total_eleitores / meta_votos) * 100
 
 # Carregar a logo na barra lateral
-st.sidebar.image("C:/Luan_Siqueira/cadastro_eleitoral/logo_patielen.png", width=200)
+st.sidebar.image("logo_patielen.png", width=200)
 
 # Aplicar os filtros
 df_filtered = df.copy()
