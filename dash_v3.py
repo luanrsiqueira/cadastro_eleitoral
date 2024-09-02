@@ -1,23 +1,8 @@
 import pandas as pd
-import psycopg2
 import streamlit as st
 import plotly.express as px
 
-# Conectar ao PostgreSQL
-conn = psycopg2.connect(
-    dbname="cadastro_eleitoral_24",
-    user="postgres",
-    password="12182624",
-    host="localhost",
-    port="5432"
-)
-
-# Executar uma consulta SQL
-query = "SELECT * FROM cadastroeleitoral"
-df = pd.read_sql(query, conn)
-
-# Fechar a conexão
-conn.close()
+df = pd.read_csv("cadastroeleitoral.csv")
 
 # Calcular a idade
 df['idade'] = pd.to_datetime('today').year - pd.to_datetime(df['data_nascimento']).dt.year
