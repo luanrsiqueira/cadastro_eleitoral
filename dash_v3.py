@@ -90,22 +90,17 @@ lider_counts.columns = ['Líder', 'Count']
 fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', 
                    labels={'Líder': 'Líder', 'Count': 'Quantidade de Eleitores'})
 
-
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_lider.update_layout(
     autosize=True,
-    margin=dict(l=10, r=10, t=30, b=50),
-    height=400,
-    font=dict(size=12),
-    yaxis_title="Quantidade de Eleitores",
-    xaxis_title="Líder",
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
 )
 
 # Adicionar as quantidades no final das barras
 fig_lider.update_traces(texttemplate='%{x}', textposition='outside')
 
 st.plotly_chart(fig_lider)
-
 
 # Gráfico de eleitores por bairro
 st.subheader("Distribuição por Bairro")
@@ -117,11 +112,8 @@ fig_bairro = px.bar(bairro_counts, x='Count', y='Bairro', orientation='h',
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_bairro.update_layout(
     autosize=True,
-    margin=dict(l=10, r=10, t=30, b=50),
-    height=400,
-    font=dict(size=12),
-    yaxis_title="Quantidade de Eleitores",
-    xaxis_title="Bairro",
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
 )
 
 # Adicionar as quantidades no final das barras
@@ -139,11 +131,8 @@ fig_faixa_etaria = px.bar(faixa_counts, x='Count', y='Faixa Etária', orientatio
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_faixa_etaria.update_layout(
     autosize=True,
-    margin=dict(l=10, r=10, t=30, b=50),
-    height=400,
-    font=dict(size=12),
-    yaxis_title="Quantidade de Eleitores",
-    xaxis_title="Faixa Etária",
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
 )
 
 # Adicionar as quantidades no final das barras
@@ -161,11 +150,8 @@ fig_emprego = px.bar(emprego_counts, x='Count', y='Situação de Emprego', orien
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_emprego.update_layout(
     autosize=True,
-    margin=dict(l=10, r=10, t=30, b=50),
-    height=400,
-    font=dict(size=12),
-    yaxis_title="Quantidade de Eleitores",
-    xaxis_title="Situação de Emprego",
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
 )
 
 # Adicionar as quantidades no final das barras
@@ -183,11 +169,8 @@ fig_escolaridade = px.bar(escolaridade_counts, x='Count', y='Escolaridade', orie
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_escolaridade.update_layout(
     autosize=True,
-    margin=dict(l=10, r=10, t=30, b=50),
-    height=400,
-    font=dict(size=12),
-    yaxis_title="Quantidade de Eleitores",
-    xaxis_title="Escolaridade",
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
 )
 
 # Adicionar as quantidades no final das barras
@@ -209,8 +192,8 @@ fig_treemap = px.treemap(secao_counts,
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_treemap.update_layout(
     autosize=True,
-    margin=dict(l=10, r=10, t=30, b=50),
-    height=400,
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
 )
 
 st.plotly_chart(fig_treemap)
@@ -222,8 +205,8 @@ fig_sexo = px.pie(df_filtered, names='sexo', title='Distribuição por Gênero')
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_sexo.update_layout(
     autosize=True,
-    margin=dict(l=10, r=10, t=30, b=50),
-    height=400,
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
 )
 
 st.plotly_chart(fig_sexo)
