@@ -138,7 +138,7 @@ def enviar_alerta_diario():
             enviar_mensagem(mensagem_resumo, telefone)
 
             # Enviar a mensagem de aviso uma vez, após os aniversariantes do dia
-            mensagem_aviso = "📢 *Sugestão de mensagem para enviar ao aniversariante:*"
+            '''mensagem_aviso = "📢 *Sugestão de mensagem para enviar ao aniversariante:*"
             enviar_mensagem(mensagem_aviso, telefone)
 
             saudacao = obter_saudacao()
@@ -160,7 +160,7 @@ Que seu dia seja repleto de alegria, amor e muitas surpresas boas. Desejo a voc�
 
 Aproveite seu dia ao máximo!
                 """
-                enviar_mensagem(mensagem_aniversario, telefone)
+                enviar_mensagem(mensagem_aniversario, telefone)'''
     else:
         print("Nenhum aniversariante hoje.")
 
