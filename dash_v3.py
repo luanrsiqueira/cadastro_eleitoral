@@ -46,8 +46,8 @@ selected_faixa_etaria = st.sidebar.multiselect("Selecione a Faixa Etária", opti
 selected_sexo = st.sidebar.multiselect("Selecione o Gênero", options=df['sexo'].unique())
 selected_emprego = st.sidebar.multiselect("Selecione a Situação de Emprego", options=df['situacao_emprego'].unique())
 selected_escolaridade = st.sidebar.multiselect("Selecione a Escolaridade", options=df['escolaridade'].unique())
-selected_secao = st.sidebar.multiselect("Selecione a Seção Eleitoral", options=sorted(df['secao'].unique()))
-selected_lider = st.sidebar.multiselect("Selecione o Líder", options=sorted(df['lider'].unique()))  # Filtro por líder
+selected_secao = st.sidebar.multiselect("Selecione a Seção Eleitoral", options=sorted(df["secao"].unique()))
+selected_lider = st.sidebar.multiselect("Selecione o Líder", options=sorted(df['lider'].unique()))
 
 if selected_bairro:
     df_filtered = df_filtered[df_filtered['bairro'].isin(selected_bairro)]
@@ -82,6 +82,14 @@ st.write(f"Faltam **{votos_faltando}** votos para atingir a meta.")
 
 # Exibir o número total de eleitores (baseado em filtros)
 st.metric(label="Quantidade Total de Eleitores", value=quantidade_eleitores_filtrados)
+
+if selected_secao:
+    # Filtrar os eleitores da seção selecionada
+    eleitores_filtrados = df[df["secao"].isin(selected_secao)][["nome", "titulo_eleitoral"]]
+    
+    # Colocar a tabela logo abaixo da quantidade total de eleitores
+    st.write("Eleitores nesta seção:")
+    st.dataframe(eleitores_filtrados)
 
 # Gráfico de distribuição por líder
 st.subheader("Distribuição por Líder")
