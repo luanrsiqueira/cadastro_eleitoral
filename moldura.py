@@ -20,7 +20,7 @@ def combine_image_with_frame(user_image_path, frame_image_path):
     return combined_image
 
 # Interface com Streamlit
-st.title("Combinar Imagem com Moldura")
+st.title("Campanha Patielen Ravana")
 
 # Upload da imagem do usuário
 uploaded_file = st.file_uploader("Escolha sua foto", type=["jpg", "png"])
