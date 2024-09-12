@@ -1,39 +1,55 @@
-from PIL import Image
+from PIL import Image, ImageOps
 import streamlit as st
-from io import BytesIO
+import io
 
-st.title("Carregar Foto com Moldura")
+# Função para combinar imagem e moldura
+def combine_image_with_frame(user_image_path, frame_image_path):
+    # Carregar as imagens
+    user_image = Image.open(user_image_path)
+    frame_image = Image.open(frame_image_path).convert("RGBA")  # Converter moldura para RGBA
 
-# Upload da moldura
-moldura_file = st.file_uploader("Carregar a imagem da moldura", type=["png", "jpg", "jpeg"])
+    # Redimensionar a imagem do usuário para caber na moldura
+    user_image = ImageOps.fit(user_image, frame_image.size, method=0, bleed=0.0, centering=(0.5, 0.5))
 
-# Upload da foto de perfil
-foto_file = st.file_uploader("Carregar a foto de perfil", type=["png", "jpg", "jpeg"])
+    # Converter a imagem do usuário para RGBA também
+    user_image = user_image.convert("RGBA")
 
-# Quando ambos os arquivos forem carregados
-if moldura_file and foto_file:
-    # Abrir a moldura
-    moldura = Image.open(moldura_file)
+    # Sobrepor a imagem do usuário na moldura
+    combined_image = Image.alpha_composite(user_image, frame_image)
 
-    # Abrir a foto de perfil
-    foto = Image.open(foto_file)
+    return combined_image
 
-    # Redimensionar a foto de perfil para caber na moldura
-    foto_resized = foto.resize((moldura.width, moldura.height))
+# Interface com Streamlit
+st.title("Combinar Imagem com Moldura")
 
-    # Combinar as imagens sobrepondo a foto na moldura
-    combined_image = moldura.copy()
-    combined_image.paste(foto_resized, (0, 0), foto_resized)
+# Upload da imagem do usuário
+uploaded_file = st.file_uploader("Escolha sua foto", type=["jpg", "png"])
 
-    # Exibir a imagem resultante no Streamlit
-    st.image(combined_image, caption="Foto com Moldura")
+# Se a imagem foi carregada
+if uploaded_file is not None:
+    # Caminhos das imagens
+    frame_image_path = 'FOTO-PERFIL.png'  # Certifique-se de que essa seja a moldura correta
 
-    # Botão para baixar a imagem combinada
-    buffer = BytesIO()
-    combined_image.save(buffer, format="PNG")
+    # Salvar a imagem do usuário
+    user_image_path = 'user_image.png'
+    with open(user_image_path, 'wb') as f:
+        f.write(uploaded_file.getbuffer())
+
+    # Combinar a imagem do usuário com a moldura
+    result_image = combine_image_with_frame(user_image_path, frame_image_path)
+
+    # Exibir a imagem resultante
+    st.image(result_image, caption='Imagem combinada com moldura')
+
+    # Converter a imagem combinada em bytes
+    img_byte_arr = io.BytesIO()
+    result_image.save(img_byte_arr, format='PNG')
+    img_byte_arr = img_byte_arr.getvalue()
+
+    # Adicionar um botão para baixar a imagem
     st.download_button(
         label="Baixar Imagem",
-        data=buffer,
-        file_name="foto_com_moldura.png",
+        data=img_byte_arr,
+        file_name="imagem_com_moldura.png",
         mime="image/png"
     )
