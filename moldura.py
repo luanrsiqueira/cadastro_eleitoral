@@ -19,6 +19,8 @@ def combine_image_with_frame(user_image_path, frame_image_path):
 
     return combined_image
 
+st.image("logo_patielen.png", width=100)
+
 # Interface com Streamlit
 st.title("Campanha Patielen Ravana")
 
