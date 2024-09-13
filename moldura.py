@@ -2,15 +2,14 @@ from PIL import Image, ImageOps
 import streamlit as st
 import io
 
-# Função para ajustar a imagem dentro da moldura
-def combine_image_with_frame(user_image_path, frame_image_path, x_offset, y_offset, scale):
+# Função para ajustar a imagem automaticamente dentro da moldura e permitir ajustes manuais
+def combine_image_with_frame(user_image_path, frame_image_path, x_offset=0, y_offset=0, scale=1.0):
     # Carregar a moldura e a imagem do usuário
     user_image = Image.open(user_image_path)
     frame_image = Image.open(frame_image_path).convert("RGBA")  # Converter moldura para RGBA
 
-    # Ajustar escala da imagem do usuário
-    new_size = (int(user_image.size[0] * scale), int(user_image.size[1] * scale))
-    user_image = user_image.resize(new_size, Image.LANCZOS)
+    # Redimensionar a imagem do usuário para caber na área da moldura automaticamente
+    user_image = ImageOps.fit(user_image, frame_image.size, method=0, bleed=0.0, centering=(0.5, 0.5))
 
     # Criar uma nova imagem transparente no tamanho da moldura
     user_image_padded = Image.new("RGBA", frame_image.size)
@@ -42,19 +41,24 @@ if uploaded_file is not None:
     with open(user_image_path, 'wb') as f:
         f.write(uploaded_file.getbuffer())
 
-    # Exibir sliders para ajuste de posição e escala diretamente na interface principal
+    # Ajustar automaticamente a imagem dentro da moldura
+    result_image = combine_image_with_frame(user_image_path, frame_image_path)
+
+    # Exibir a imagem resultante
+    st.image(result_image, caption='Imagem combinada com moldura')
+
+    # Exibir sliders para ajuste de posição e escala (se o usuário desejar ajustar manualmente)
     st.header("Ajustes Manuais")
     x_offset = st.slider("Mover para a esquerda/direita", -500, 500, 0)
     y_offset = st.slider("Mover para cima/baixo", -500, 500, 0)
     scale = st.slider("Ajustar tamanho (escala)", 0.5, 2.0, 1.0)
 
-    # Combinar a imagem do usuário com a moldura usando ajustes manuais
-    result_image = combine_image_with_frame(user_image_path, frame_image_path, x_offset, y_offset, scale)
+    # Se o usuário ajustar manualmente, recalcular a imagem
+    if x_offset != 0 or y_offset != 0 or scale != 1.0:
+        result_image = combine_image_with_frame(user_image_path, frame_image_path, x_offset, y_offset, scale)
+        st.image(result_image, caption='Imagem ajustada manualmente com moldura')
 
-    # Exibir a imagem resultante
-    st.image(result_image, caption='Imagem combinada com moldura')
-
-    # Converter a imagem combinada em bytes
+    # Converter a imagem combinada em bytes para download
     img_byte_arr = io.BytesIO()
     result_image.save(img_byte_arr, format='PNG')
     img_byte_arr = img_byte_arr.getvalue()
