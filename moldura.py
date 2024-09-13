@@ -35,7 +35,7 @@ uploaded_file = st.file_uploader("Escolha sua foto", type=["jpg", "png"])
 # Se a imagem foi carregada
 if uploaded_file is not None:
     # Caminho para a moldura
-    frame_image_path = 'FOTO-PERFIL.png'  # Moldura fixa já fornecida
+    frame_image_path = '/mnt/data/file-5dPTOMLV17CBarzHgSVvqCQ2'  # Moldura fixa já fornecida
     
     # Salvar a imagem do usuário
     user_image_path = 'user_image.png'
