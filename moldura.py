@@ -2,26 +2,31 @@ from PIL import Image, ImageOps
 import streamlit as st
 import io
 
-# Função para combinar imagem e moldura
-def combine_image_with_frame(user_image_path, frame_image_path):
-    # Carregar as imagens
+# Função para ajustar a imagem dentro da moldura
+def combine_image_with_frame(user_image_path, frame_image_path, x_offset, y_offset, scale):
+    # Carregar a moldura e a imagem do usuário
     user_image = Image.open(user_image_path)
     frame_image = Image.open(frame_image_path).convert("RGBA")  # Converter moldura para RGBA
 
-    # Redimensionar a imagem do usuário para caber na moldura
-    user_image = ImageOps.fit(user_image, frame_image.size, method=0, bleed=0.0, centering=(0.5, 0.5))
+    # Ajustar escala da imagem do usuário
+    new_size = (int(user_image.size[0] * scale), int(user_image.size[1] * scale))
+    user_image = user_image.resize(new_size, Image.LANCZOS)
 
-    # Converter a imagem do usuário para RGBA também
-    user_image = user_image.convert("RGBA")
+    # Criar uma nova imagem transparente no tamanho da moldura
+    user_image_padded = Image.new("RGBA", frame_image.size)
+
+    # Colocar a imagem do usuário com base nos offsets
+    user_image_padded.paste(user_image, (x_offset, y_offset))
 
     # Sobrepor a imagem do usuário na moldura
-    combined_image = Image.alpha_composite(user_image, frame_image)
+    combined_image = Image.alpha_composite(user_image_padded, frame_image)
 
     return combined_image
 
+# Interface com Streamlit
 st.image("logo_patielen.png", width=100)
 
-# Interface com Streamlit
+# Título da página
 st.title("Campanha Patielen Ravana")
 
 # Upload da imagem do usuário
@@ -29,16 +34,22 @@ uploaded_file = st.file_uploader("Escolha sua foto", type=["jpg", "png"])
 
 # Se a imagem foi carregada
 if uploaded_file is not None:
-    # Caminhos das imagens
-    frame_image_path = 'FOTO-PERFIL.png'  # Certifique-se de que essa seja a moldura correta
-
+    # Caminho para a moldura
+    frame_image_path = 'FOTO-PERFIL.png'  # Moldura fixa já fornecida
+    
     # Salvar a imagem do usuário
     user_image_path = 'user_image.png'
     with open(user_image_path, 'wb') as f:
         f.write(uploaded_file.getbuffer())
 
-    # Combinar a imagem do usuário com a moldura
-    result_image = combine_image_with_frame(user_image_path, frame_image_path)
+    # Adicionar sliders para ajuste de posição e escala
+    st.sidebar.header("Ajustes Manuais")
+    x_offset = st.sidebar.slider("Mover para a esquerda/direita", -500, 500, 0)
+    y_offset = st.sidebar.slider("Mover para cima/baixo", -500, 500, 0)
+    scale = st.sidebar.slider("Ajustar tamanho (escala)", 0.5, 2.0, 1.0)
+
+    # Combinar a imagem do usuário com a moldura usando ajustes manuais
+    result_image = combine_image_with_frame(user_image_path, frame_image_path, x_offset, y_offset, scale)
 
     # Exibir a imagem resultante
     st.image(result_image, caption='Imagem combinada com moldura')
