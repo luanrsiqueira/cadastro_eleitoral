@@ -42,11 +42,11 @@ if uploaded_file is not None:
     with open(user_image_path, 'wb') as f:
         f.write(uploaded_file.getbuffer())
 
-    # Adicionar sliders para ajuste de posição e escala
-    st.sidebar.header("Ajustes Manuais")
-    x_offset = st.sidebar.slider("Mover para a esquerda/direita", -500, 500, 0)
-    y_offset = st.sidebar.slider("Mover para cima/baixo", -500, 500, 0)
-    scale = st.sidebar.slider("Ajustar tamanho (escala)", 0.5, 2.0, 1.0)
+    # Exibir sliders para ajuste de posição e escala diretamente na interface principal
+    st.header("Ajustes Manuais")
+    x_offset = st.slider("Mover para a esquerda/direita", -500, 500, 0)
+    y_offset = st.slider("Mover para cima/baixo", -500, 500, 0)
+    scale = st.slider("Ajustar tamanho (escala)", 0.5, 2.0, 1.0)
 
     # Combinar a imagem do usuário com a moldura usando ajustes manuais
     result_image = combine_image_with_frame(user_image_path, frame_image_path, x_offset, y_offset, scale)
