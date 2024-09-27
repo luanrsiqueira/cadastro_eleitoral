@@ -93,12 +93,19 @@ if selected_secao:
 
 # Gráfico de distribuição por líder
 st.subheader("Distribuição por Líder")
-lider_counts = df_filtered['lider'].value_counts().reset_index()
+# Contagem de eleitores por líder
+lider_counts = df['lider'].value_counts().reset_index()
 lider_counts.columns = ['Líder', 'Count']
+
+# Garantir que todos os líderes apareçam, mesmo que não tenham eleitores
 lider_counts = lider_counts.set_index('Líder').reindex(sorted(df['lider'].unique()), fill_value=0).reset_index()
+
+# Ordenar a contagem em ordem crescente
 lider_counts = lider_counts.sort_values(by='Count', ascending=True)
-fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', 
-                   labels={'Líder': 'Líder', 'Count': 'Eleitores'})
+
+# Gráfico de distribuição por líder
+fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', labels={'Líder': 'Líder', 'Count': 'Eleitores'})
+
 
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
