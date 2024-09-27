@@ -96,8 +96,10 @@ st.subheader("Distribuição por Líder")
 lider_counts = df_filtered['lider'].value_counts().reset_index()
 lider_counts.columns = ['Líder', 'Count']
 lider_counts = lider_counts.set_index('Líder').reindex(sorted(df['lider'].unique()), fill_value=0).reset_index()
+lider_counts = lider_counts.sort_values(by='Count', ascending=True)
 fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', 
                    labels={'Líder': 'Líder', 'Count': 'Eleitores'})
+
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_lider.update_layout(
