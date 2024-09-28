@@ -93,8 +93,11 @@ if selected_secao:
 
 # Gráfico de distribuição por líder
 st.subheader("Distribuição por Líder")
+# Criar uma lista com todos os líderes únicos do DataFrame
+todos_lideres = sorted(df['lider'].unique())
+
 # Contagem de eleitores por líder, incluindo líderes sem eleitores
-lider_counts = df['lider'].value_counts().reindex(sorted(df['lider'].unique()), fill_value=0).reset_index()
+lider_counts = df['lider'].value_counts().reindex(todos_lideres, fill_value=0).reset_index()
 lider_counts.columns = ['Líder', 'Count']
 
 # Ordenar a contagem em ordem crescente
