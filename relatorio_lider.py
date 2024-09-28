@@ -17,63 +17,119 @@ cur = conn.cursor()
 
 # Lista de nomes dos líderes
 lideres = [
-    'Ana Carla Nunes', 'Ana Carolina', 'Ana Paula da Silva', 'Anne Taiane', 
-    'Artur Lopes', 'Baidem', 'Cleidiane Paixão', 'Cleudilene Mota', 'Daine', 
-    'Dudita', 'Edilson Negão', 'Eduardo', 'Elias Requel Costa', 'Faate', 
-    'Flávia Gava', 'Helenio', 'Ieda', 'Ilda', 'Jackson Lima', 'Joana Lopes', 
-    'Josiene Lobato', 'Keila Ribeiro', 'Laila Maciel', 'Luiz Fernando Freitas dos Santos', 
-    'Lula Leal', 'Madalena', 'Maicon', 'Marcos Pereira', 'Maria Maciel', 
-    'Marinaldo Caldas Ramos', 'Martha Isla', 'Matheus Andrade', 'Pastor Marcos', 
-    'Patielen', 'Paulinha', 'Rafael Cohen', 'Raimundo', 'Ribamar', 'Sidney Guimarães', 
-    'SOS', 'Taciana', 'Tacilene Ramos', 'Taiara', 'Valdiney Siqueira', 
-    'Vinícius Santos', 'Wericley Maciel', 'Wirla'
+    'Patielen',
+    'Pastor Marcos',
+    'Tacilene Ramos',
+    'Baidem',
+    'Sidne',
+    'Ana Paula da Silva',
+    'Edilson',
+    'Edilson Negão',
+    'Flávia Gava',
+    'Ana Carolina',
+    'Cleidiane Paixão',
+    'Jackson Lima',
+    'Elias Requel Costa',
+    'Artur Lopes',
+    'Daine',
+    'Priscila',
+    'Matheus Andrade',
+    'Rafael Cohen',
+    'Valdiney Siqueira',
+    'Keila Ribeiro',
+    'Vinícius Santos',
+    'Joana Lopes',
+    'Raimundo',
+    'Ilda',
+    'Sidney Guimarães',
+    'Marcos Pereira',
+    'Lula Leal',
+    'Ana Carla Nunes',
+    'Luiz Fernando Freitas dos Santos',
+    'Anne Taiane',
+    'Maria Maciel',
+    'Cleudilene Mota',
+    'João Thiago',
+    'Dudita',
+    'Wivila',
+    'Taciana',
+    'Eduardo',
+    'Josiene Lobato',
+    'Marinaldo Caldas Ramos',
+    'Martha Isla',
+    'Taiara',
+    'Laila Maciel',
+    'Ribamar',
+    'Faate',
+    'Maicon',
+    'Madalena',
+    'SOS',
+    'Ieda',
+    'Wericley Maciel',
+    'Paulinha',
+    'Helenio'
 ]
 
 # Cria a pasta onde os PDFs serão salvos
-output_folder = "pdf_output"
+output_folder = "relatorios_lideres"
 os.makedirs(output_folder, exist_ok=True)
 
-# Função para organizar os nomes em colunas
-def organizar_em_colunas(nomes, num_colunas=2):
-    linhas = math.ceil(len(nomes) / num_colunas)
+# Função para organizar os nomes e telefones em colunas
+def organizar_em_colunas(dados, num_colunas=2):
+    linhas = math.ceil(len(dados) / num_colunas)
     colunas = []
     
     for i in range(num_colunas):
-        colunas.append(nomes[i*linhas:(i+1)*linhas])
+        colunas.append(dados[i*linhas:(i+1)*linhas])
     
     # Adicionar espaços em branco para igualar o número de linhas
     for coluna in colunas:
         while len(coluna) < linhas:
-            coluna.append("")
+            coluna.append(("", ""))
 
     return colunas
 
 # Gera o PDF para cada líder na lista
 for lider in lideres:
     # Consulta SQL para obter os registros associados ao líder
-    cur.execute("SELECT nome FROM cadastroeleitoral WHERE lider = %s ORDER BY nome ASC", (lider,))
+    cur.execute("SELECT nome, celular FROM cadastroeleitoral WHERE lider = %s ORDER BY nome ASC", (lider,))
     results = cur.fetchall()
 
     if results:
-        nomes = [row[0] for row in results]
-        colunas = organizar_em_colunas(nomes)
+        dados = [(row[0], row[1]) for row in results]  # Lista de tuplas (nome, celular)
+        colunas = organizar_em_colunas(dados)
 
-        pdf = FPDF()
+        pdf = FPDF(orientation='P', unit='mm', format='A4')  # Garantindo que o formato seja A4
         pdf.add_page()
-        pdf.set_font("Arial", size=12)
+        pdf.set_font("Arial", size=6)  # Diminuir o tamanho da fonte para 6
 
         # Adiciona o título com o nome do líder
-        pdf.cell(200, 10, txt=f"Líder: {lider}", ln=True, align='L')
-        pdf.ln(10)  # Adiciona uma linha em branco
+        pdf.cell(200, 5, txt=f"Líder: {lider}", ln=True, align='L')
+        pdf.ln(5)  # Adiciona uma linha em branco
 
-        # Define a largura de cada coluna para duas colunas
-        largura_coluna = 95
+        # Define a largura das colunas para caber na largura da página A4 (210mm)
+        largura_nome = 70  # Largura para o nome
+        largura_telefone = 30  # Largura para o telefone
 
-        # Adiciona os nomes em duas colunas no PDF
+        # Adiciona os cabeçalhos da tabela
+        pdf.set_font("Arial", 'B', size=6)
+        pdf.cell(largura_nome, 5, txt="Nome", border=1, align='C')
+        pdf.cell(largura_telefone, 5, txt="Telefone", border=1, align='C')
+        pdf.cell(largura_nome, 5, txt="Nome", border=1, align='C')
+        pdf.cell(largura_telefone, 5, txt="Telefone", border=1, align='C')
+        pdf.ln(5)
+
+        # Adiciona os nomes e números em duas colunas no PDF com grade
+        pdf.set_font("Arial", size=6)
         for linha in zip(*colunas):
-            for coluna in linha:
-                pdf.cell(largura_coluna, 10, txt=coluna, border=0)
-            pdf.ln(10)  # Move para a próxima linha
+            nome1, celular1 = linha[0]
+            nome2, celular2 = linha[1] if len(linha) > 1 else ("", "")
+
+            pdf.cell(largura_nome, 5, txt=nome1, border=1)
+            pdf.cell(largura_telefone, 5, txt=celular1 if celular1 else "Não informado", border=1)
+            pdf.cell(largura_nome, 5, txt=nome2, border=1)
+            pdf.cell(largura_telefone, 5, txt=celular2 if celular2 else "Não informado", border=1)
+            pdf.ln(5)  # Move para a próxima linha
 
         # Salva o PDF na pasta especificada
         pdf_file_path = os.path.join(output_folder, f"{lider}.pdf")
