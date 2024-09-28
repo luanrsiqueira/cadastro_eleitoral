@@ -94,39 +94,28 @@ if selected_secao:
 # Gráfico de distribuição por líder
 st.subheader("Distribuição por Líder")
 # Carregar o CSV que contém a quantidade de eleitores por líder
-try:
-    df_lideres = pd.read_csv("quantidade_eleitores_por_lider.csv")
-except FileNotFoundError:
-    st.error("Arquivo 'quantidade_eleitores_por_lider.csv' não encontrado. Verifique se o arquivo está no diretório correto.")
-    st.stop()
-
-# Verificar se o DataFrame foi carregado corretamente
-if df_lideres.empty:
-    st.warning("O arquivo 'quantidade_eleitores_por_lider.csv' está vazio ou não contém dados.")
-    st.stop()
-
-# Mostrar os dados carregados para verificação
-st.write("Dados carregados do CSV:")
-st.dataframe(df_lideres)
+df_lideres = pd.read_csv("quantidade_eleitores_por_lider.csv")
 
 # Ordenar a contagem em ordem crescente
 df_lideres = df_lideres.sort_values(by='quantidade_eleitores', ascending=True)
 
-# Gerar o gráfico usando Matplotlib
+# Gráfico de distribuição por líder
 st.subheader("Distribuição de Eleitores por Líder")
+fig_lider = px.bar(df_lideres, x='quantidade_eleitores', y='lider', orientation='h', 
+                   labels={'lider': 'Líder', 'quantidade_eleitores': 'Eleitores'})
 
-fig, ax = plt.subplots(figsize=(10, len(df_lideres) * 0.4))  # Ajustar altura conforme o número de líderes
-ax.barh(df_lideres['lider'], df_lideres['quantidade_eleitores'], color='skyblue')
-ax.set_xlabel('Quantidade de Eleitores')
-ax.set_ylabel('Líder')
-ax.set_title('Quantidade de Eleitores por Líder')
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_lider.update_layout(
+    autosize=True,
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
+)
 
-# Adicionar rótulos de quantidade ao lado das barras
-for index, value in enumerate(df_lideres['quantidade_eleitores']):
-    ax.text(value, index, str(value))
+# Adicionar as quantidades no final das barras
+fig_lider.update_traces(texttemplate='%{x}', textposition='outside')
 
-# Exibir o gráfico no Streamlit
-st.pyplot(fig)
+st.plotly_chart(fig_lider)
+
 # Gráfico de eleitores por bairro
 st.subheader("Distribuição por Bairro")
 bairro_counts = df_filtered['bairro'].value_counts().reset_index()
