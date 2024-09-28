@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-import matplotlib.pyplot as plt
 
 df = pd.read_csv("cadastroeleitoral.csv")
 
@@ -94,15 +93,28 @@ if selected_secao:
 
 # Gráfico de distribuição por líder
 st.subheader("Distribuição por Líder")
-fig, ax = plt.subplots(figsize=(10, 8))
-ax.barh(df["Líder"], df["Eleitores"], color='skyblue')
-ax.set_xlabel("Eleitores")
-ax.set_ylabel("Líder")
-ax.set_title("Distribuição de Eleitores por Líder")
-plt.gca().invert_yaxis()  # Inverter o eixo Y para o maior valor ficar no topo
+# Carregar o CSV que contém a quantidade de eleitores por líder
+df_lideres = pd.read_csv("quantidade_eleitores_por_lider.csv")
 
-# Mostrar o gráfico no Streamlit
-st.pyplot(fig)
+# Ordenar a contagem em ordem crescente
+df_lideres = df_lideres.sort_values(by='quantidade_eleitores', ascending=True)
+
+# Gráfico de distribuição por líder
+st.subheader("Distribuição de Eleitores por Líder")
+fig_lider = px.bar(df_lideres, x='quantidade_eleitores', y='lider', orientation='h', 
+                   labels={'lider': 'Líder', 'quantidade_eleitores': 'Eleitores'})
+
+# Ajustar layout para exibir corretamente em dispositivos móveis
+fig_lider.update_layout(
+    autosize=True,
+    margin=dict(l=0, r=0, t=30, b=30),
+    height=300
+)
+
+# Adicionar as quantidades no final das barras
+fig_lider.update_traces(texttemplate='%{x}', textposition='outside')
+
+st.plotly_chart(fig_lider)
 
 # Gráfico de eleitores por bairro
 st.subheader("Distribuição por Bairro")
