@@ -94,7 +94,7 @@ if selected_secao:
 # Gráfico de distribuição por líder
 st.subheader("Distribuição por Líder")
 # Contagem de eleitores por líder, incluindo líderes sem eleitores
-lider_counts = df['lider'].value_counts().reindex(df['lider'].unique(), fill_value=0).reset_index()
+lider_counts = df['lider'].value_counts().reindex(sorted(df['lider'].unique()), fill_value=0).reset_index()
 lider_counts.columns = ['Líder', 'Count']
 
 # Ordenar a contagem em ordem crescente
