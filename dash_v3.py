@@ -93,18 +93,16 @@ if selected_secao:
 
 # Gráfico de distribuição por líder
 st.subheader("Distribuição por Líder")
-# Criar uma lista com todos os líderes únicos do DataFrame
-todos_lideres = sorted(df['lider'].unique())
-
-# Contagem de eleitores por líder, incluindo líderes sem eleitores
-lider_counts = df['lider'].value_counts().reindex(todos_lideres, fill_value=0).reset_index()
-lider_counts.columns = ['Líder', 'Count']
+# Carregar o CSV que contém a quantidade de eleitores por líder
+df_lideres = pd.read_csv("quantidade_eleitores_por_lider.csv")
 
 # Ordenar a contagem em ordem crescente
-lider_counts = lider_counts.sort_values(by='Count', ascending=True)
+df_lideres = df_lideres.sort_values(by='quantidade_eleitores', ascending=True)
 
 # Gráfico de distribuição por líder
-fig_lider = px.bar(lider_counts, x='Count', y='Líder', orientation='h', labels={'Líder': 'Líder', 'Count': 'Eleitores'})
+st.subheader("Distribuição de Eleitores por Líder")
+fig_lider = px.bar(df_lideres, x='quantidade_eleitores', y='lider', orientation='h', 
+                   labels={'lider': 'Líder', 'quantidade_eleitores': 'Eleitores'})
 
 # Ajustar layout para exibir corretamente em dispositivos móveis
 fig_lider.update_layout(
