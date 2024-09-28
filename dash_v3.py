@@ -97,23 +97,23 @@ st.subheader("Distribuição por Líder")
 df_lideres = pd.read_csv("quantidade_eleitores_por_lider.csv")
 
 # Ordenar a contagem em ordem crescente
-df_lideres = df_lideres.sort_values(by='quantidade_eleitores', ascending=True)
+df_lideres = df_lideres.sort_values(by='quantidade_eleitores', ascending=False)
 
-# Gráfico de distribuição por líder
-st.subheader("Distribuição de Eleitores por Líder")
+# Criar o gráfico de barras horizontal
 fig_lider = px.bar(df_lideres, x='quantidade_eleitores', y='lider', orientation='h', 
                    labels={'lider': 'Líder', 'quantidade_eleitores': 'Eleitores'})
 
-# Ajustar layout para exibir corretamente em dispositivos móveis
+# Ajustar layout para garantir que todos os líderes sejam exibidos
 fig_lider.update_layout(
     autosize=True,
     margin=dict(l=0, r=0, t=30, b=30),
-    height=300
+    height=800  # Aumentando a altura para exibir todos os líderes
 )
 
 # Adicionar as quantidades no final das barras
 fig_lider.update_traces(texttemplate='%{x}', textposition='outside')
 
+# Mostrar o gráfico no Streamlit
 st.plotly_chart(fig_lider)
 
 # Gráfico de eleitores por bairro
