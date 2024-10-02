@@ -19,15 +19,17 @@ cur = conn.cursor()
 lideres = [
  "Ana Carla Lopes", "Ana Carla Nunes", "Ana Carolina", "Ana Paula da Silva", 
     "Anne Taiane", "Artur Lopes", "Baidem", "Cleidiane Paixão", "Cleudilene Mota", 
-    "Daine", "Dudita", "Edilson", "Edilson Negão", "Eduardo", "Elias Requel Costa", 
-    "Faate", "Flávia Gava", "Helenio", "Ieda", "Ilda", "Jackson Lima", "Joana Lopes", 
-    "João Thiago", "Jordana", "Josiene Lobato", "Keila Ribeiro", "Laila Maciel", 
-    "Luiz Fernando Freitas dos Santos", "Lula Leal", "Madalena", "Maicon", "Marcos Pereira", 
-    "Maria Maciel", "Marinaldo Caldas Ramos", "Martha Isla", "Matheus Andrade", 
-    "Pastor Marcos", "Paulinha", "Priscila", "Rafael Cohen", "Raimunda", "Raimundo", 
-    "Ribamar", "Ronilson", "Sidne", "Sidney Guimarães", "SOS", "Taciana", 
-    "Tacilene Ramos", "Taiara", "Valdiney Siqueira", "Vanuza Costa", "Vinícius Santos", 
-    "Wericley Maciel", "Wivila", "Zilzane de Sousa"
+    "Daine", "Dudita", "Edilson", "Eduardo", "Elias Requel Costa", "Faate", 
+    "Flávia Gava", "Helenio", "Ieda", "Ilda", "Jackson Lima", "Joana Lopes", 
+    "João Thiago", "Jordana", "Josiene Lobato", "Keila Ribeiro", "Kelliany", 
+    "Laila Maciel", "Luan Siqueira", "Luiz Fernando Freitas dos Santos", 
+    "Lula Leal", "Madalena", "Maicon", "Marcelina", "Marcos Pereira", 
+    "Maria Maciel", "Marinaldo Caldas Ramos", "Martha Isla", "Matha Isla", 
+    "Matheus Andrade", "Pastor Marcos", "Paulinha", "Priscila", "Rafael Cohen", 
+    "Raimunda", "Raimundo", "Ribamar", "Ronilson", "Roseana", "Sidne", 
+    "Sidney Guimarães", "SOS", "Taciana", "Tacilene Ramos", "Taiara", 
+    "Valdiney Siqueira", "Vanuza Costa", "Vinícius Santos", "Wericley Maciel", 
+    "Wivila", "Zilzane de Sousa"
 ]
 
 
@@ -65,7 +67,7 @@ def criar_pdf_por_lider():
         pdf.ln()
 
         # Consulta para buscar dados de cada líder
-        cur.execute("SELECT nome, celular FROM cadastro_eleitoral_v6 WHERE lider = %s order by nome ASC", (lider,),)
+        cur.execute("SELECT nome, celular FROM cadastro_eleitoral_v7 WHERE lider = %s order by nome ASC", (lider,),)
         rows = cur.fetchall()
 
         # Preenchendo os dados da tabela estilo Excel, pegando apenas o primeiro e segundo nome sem preposições

@@ -16,7 +16,7 @@ cur = conn.cursor()
 # Consulta SQL para obter nome, telefone, título e seção de cada eleitor
 cur.execute("""
     SELECT nome, celular, titulo_eleitoral, secao
-    FROM cadastro_eleitoral_v6
+    FROM cadastro_eleitoral_v7
     ORDER BY nome ASC
 """)
 results = cur.fetchall()
