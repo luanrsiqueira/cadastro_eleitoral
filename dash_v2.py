@@ -11,7 +11,7 @@ conn = psycopg2.connect(
 )
 
 # Executar uma consulta SQL
-query = "SELECT * FROM cadastroeleitoral ORDER BY id ASC"
+query = "SELECT * FROM cadastro_eleitoral_v2 ORDER BY id ASC"
 df = pd.read_sql(query, conn)
 
 # Fechar a conexão

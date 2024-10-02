@@ -17,17 +17,17 @@ cur = conn.cursor()
 
 # Lista de nomes dos líderes
 lideres = [
-    'Tacilene Ramos', 'Baidem', 'Pastor Marcos', 'Edilson Negão', 'Sidne',
-    'Ana Carolina', 'Jackson Lima', 'Elias Requel Costa', 'Daine', 'Edilson',
-    'Artur Lopes', 'Matheus Andrade', 'Priscila', 'Ana Paula da Silva',
-    'Rafael Cohen', 'Valdiney Siqueira', 'Joana Lopes', 'Keila Ribeiro',
-    'Vinícius Santos', 'Raimundo', 'Ilda', 'Sidney Guimarães', 'Raimunda',
-    'Flávia Gava', 'Ana Carla Nunes', 'Luiz Fernando Freitas dos Santos',
-    'Lula Leal', 'Maria Maciel', 'Anne Taiane', 'João Thiago', 'Cleudilene Mota',
-    'Dudita', 'Wivila', 'Taciana', 'Eduardo', 'Marcos Pereira', 'Josiene Lobato',
-    'Marinaldo Caldas Ramos', 'Martha Isla', 'Taiara', 'Laila Maciel',
-    'Cleidiane Paixão', 'Faate', 'Madalena', 'Ieda', 'SOS', 'Ribamar',
-    'Wericley Maciel', 'Maicon', 'Paulinha', 'Helenio'
+    "Ana Carla Lopes", "Ana Carla Nunes", "Ana Carolina", "Ana Paula da Silva", 
+    "Anne Taiane", "Artur Lopes", "Baidem", "Cleidiane Paixão", "Cleudilene Mota", 
+    "Daine", "Dudita", "Edilson", "Edilson Negão", "Eduardo", "Elias Requel Costa", 
+    "Faate", "Flávia Gava", "Helenio", "Ieda", "Ilda", "Jackson Lima", "Joana Lopes", 
+    "João Thiago", "Jordana", "Josiene Lobato", "Keila Ribeiro", "Laila Maciel", 
+    "Luiz Fernando Freitas dos Santos", "Lula Leal", "Madalena", "Maicon", "Marcos Pereira", 
+    "Maria Maciel", "Marinaldo Caldas Ramos", "Martha Isla", "Matheus Andrade", 
+    "Pastor Marcos", "Paulinha", "Priscila", "Rafael Cohen", "Raimunda", "Raimundo", 
+    "Ribamar", "Ronilson", "Sidne", "Sidney Guimarães", "SOS", "Taciana", 
+    "Tacilene Ramos", "Taiara", "Valdiney Siqueira", "Vanuza Costa", "Vinícius Santos", 
+    "Wericley Maciel", "Wivila", "Zilzane de Sousa"
 ]
 
 # Função para criar o PDF com colunas e formato de tabela
@@ -48,7 +48,7 @@ def criar_pdf_por_lider():
         pdf.ln()
 
         # Consulta para buscar dados de cada líder
-        cur.execute("SELECT nome, celular FROM cadastroeleitoral WHERE lider = %s", (lider,))
+        cur.execute("SELECT nome, celular FROM cadastro_eleitoral_v2 WHERE lider = %s", (lider,))
         rows = cur.fetchall()
 
         # Preenchendo os dados da tabela
