@@ -28,7 +28,7 @@ def faixa_etaria(idade):
 df['faixa_etaria'] = df['idade'].apply(faixa_etaria)
 
 # Definir a meta de votos
-meta_votos = 1500
+meta_votos = 1600
 
 # Calcular a quantidade total de eleitores (sem filtros)
 quantidade_total_eleitores = df['id'].nunique()
