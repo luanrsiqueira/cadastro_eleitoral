@@ -187,6 +187,7 @@ id,lider,nome,endereco,bairro,celular,titulo_eleitoral,secao,zona_eleitoral,esco
 197,Taciana,Andreia Rodrigues da Silva,"Rua vila nova, n° 134",Palmares II,Não informado,Não informado,Não informado,40,Não informado,Dona de casa,,Solteiro,Feminino,Desempregado,Nenhuma observação,,2024-08-20
 198,Taciana,Eduardo da Silva Ricardo,"Rua vila nova, n° 134",Palmares II,Não informado,Não informado,Não informado,40,Não informado,Não informado,,Solteiro,Masculino,Desempregado,Nenhuma observação,,2024-08-20
 200,Taciana,Dhienifer Veiga de Almeida,"Rua belo monte, n° 06",Palmares II,94981498222,Não informado,Não informado,40,Não informado,Sorveteiro,,Solteiro,Feminino,Empregado,Nenhuma observação,2005-07-23,2024-08-20
+203,Faate,Pâmela dos Santos Nascimento,"Rua José Neres Torres, n° 252",Santa Isabel,94981220339,067783801309,0088,40,Ensino médio completo,Secretário,,Solteiro,Feminino,Empregado,Nenhuma observação,1995-10-04,2024-09-02
 205,Faate,José Lucas Souta Mota,"Rua 10 de maio, n° 20",Santa Isabel,94992615618,063358481341,0090,40,Ensino médio completo,Ajudante de segurança eletrônica,,Solteiro,Masculino,Desempregado,Nenhuma observação,1994-08-17,2024-09-02
 207,Ana Paula da Silva,Simone da Silva Cardoso,Rua São Mateus,Cristo Vive,94988125097,053864591309,0069,40,Ensino fundamental incompleto,Auxiliar de cozinha,,Solteiro,Feminino,Desempregado,Nenhuma observação,1987-11-16,2024-08-19
 208,Ana Paula da Silva,Maria de Lurdes Eugênio da Silva,Rua São Mateus,Cristo Vive,94991901034,026566481368,0389,40,Ensino fundamental incompleto,Pescador,,Solteiro,Feminino,Desempregado,Nenhuma observação,1967-12-27,2024-08-19
@@ -709,6 +710,7 @@ id,lider,nome,endereco,bairro,celular,titulo_eleitoral,secao,zona_eleitoral,esco
 731,Marinaldo Caldas Ramos,Mairla ramos rodrigues,Av. pátria livre,Liberdade,Não informado,08833741376,0070,040,Não informado,Não informado,,Solteiro,Feminino,Não informado,Nenhuma observação,2006-10-22,2024-09-23
 732,Marinaldo Caldas Ramos,Kailane ramos afonso,Tv santos do monte,Liberdade,Não informado,082357691325,0402,040,Ensino médio completo,Não informado,,Casado,Feminino,Não informado,Nenhuma observação,,2024-09-23
 733,Marinaldo Caldas Ramos,Luiz carlos leite do nascimento,"Av assis de vasconcelos, n° 563",Matinha,Não informado,061107521325,0064,040,Ensino médio completo,Não informado,,Não informado,Masculino,Desempregado,Nenhuma observação,2019-05-08,2024-09-23
+734,Matheus Andrade,Josicleide marques da conceicao,Não informado,Não informado,Não informado,043070811376,040,0086,Não informado,Não informado,,Solteiro,Feminino,Empregado,Nenhuma observação,1983-11-26,2024-09-23
 738,Matheus Andrade,Ana carolina santana de andrade,Não informado,Cohab,Não informado,067770531333,040,0389,Ensino superior completo,Farmacêutico,,Casado,Feminino,Empregado,Nenhuma observação,1994-08-20,2024-09-23
 739,Matheus Andrade,Maria lucia santana de andrade,Não informado,Cohab,Não informado,026919261350,040,0059,Não informado,Aposentado,,Casado,Feminino,Não informado,Nenhuma observação,1964-01-05,2024-09-23
 740,Matheus Andrade,Matheus santana de andrade,Não informado,Cohab,Não informado,078953861333,040,0059,Ensino superior completo,Dentista,,Solteiro,Masculino,Empregado,Nenhuma observação,2000-01-20,2024-09-23
@@ -1009,6 +1011,7 @@ id,lider,nome,endereco,bairro,celular,titulo_eleitoral,secao,zona_eleitoral,esco
 1039,Paulinha,Rosinete conceição,Não informado,Cristo Vive,94991831549,0Não informado,0255,040,Não informado,Não informado,,Não informado,Feminino,Não informado,Nenhuma observação,1969-04-28,2024-09-27
 1040,Ieda,Francisca alves dos reis júnior,Não informado,Não informado,94991872717,017349651368,0384,040,Não informado,Não informado,,Casado,Feminino,Não informado,Nenhuma observação,1963-08-03,2024-09-27
 1041,Ieda,Rosimere leite da silva,Não informado,Não informado,94991393113,061105161350,0358,040,Não informado,Não informado,,Casado,Feminino,Não informado,Nenhuma observação,1988-11-07,2024-09-27
+1042,Ieda,Marcio da trindade silva,Não informado,Matinha,Não informado,066701811333,0378,040,Não informado,Não informado,,Não informado,Masculino,Não informado,Nenhuma observação,1993-11-05,2024-09-27
 1043,Ieda,Maluza de souza silva,Não informado,Não informado,Não informado,075567811341,0352,040,Não informado,Não informado,,Casado,Feminino,Não informado,Nenhuma observação,1999-11-16,2024-09-27
 1044,Ieda,Matheus willians sousa oliveira,Não informado,Santa Mônica,94981760052,077485991384,0098,040,Não informado,Não informado,,Não informado,Masculino,Não informado,Nenhuma observação,2001-01-03,2024-09-27
 1045,Ieda,Ana vitória da silva freitas,Não informado,Santa Mônica,Não informado,078956201309,0389,040,Não informado,Não informado,,Solteiro,Feminino,Não informado,Nenhuma observação,,2024-09-27
@@ -1376,7 +1379,7 @@ id,lider,nome,endereco,bairro,celular,titulo_eleitoral,secao,zona_eleitoral,esco
 1436,Ribamar,José wilson soares de alencar,Não informado,Beira Rio,Não informado,019020562224,0252,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1977-01-06,2024-10-01
 1437,Ribamar,Zuleide soares melo,Não informado,Beira Rio,Não informado,033010971384,0414,040,Não informado,Não informado,,Solteiro,Feminino,Não informado,Nenhuma observação,1997-01-17,2024-10-01
 1438,Ribamar,Diego de sousa costa,Não informado,Beira Rio,Não informado,066180691362,0107,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1994-07-02,2024-10-01
-1439,Ribamar,Rodrigo cabral de almeida,Não informado,Matinha,Não informado,None,None,040,Não informado,Não informado,,Casado,Masculino,Não informado,Nenhuma observação,1982-11-09,2024-10-01
+1439,Ribamar,Rodrigo cabral de almeida,Não informado,Matinha,Não informado,None,Não informado,040,Não informado,Não informado,,Casado,Masculino,Não informado,Nenhuma observação,1982-11-09,2024-10-01
 1440,Anne Taiane,Regina marques,Não informado,São Francisco,Não informado,None,0056,040,Não informado,Não informado,,Solteiro,Feminino,Não informado,Nenhuma observação,1986-08-10,2024-10-01
 1441,Anne Taiane,Sara cristina furtado pontes,Não informado,Beira Rio,Não informado,None,0394,040,Não informado,Não informado,,Solteiro,Feminino,Não informado,Nenhuma observação,1998-07-25,2024-10-01
 1442,Anne Taiane,Milena rodrigues de lima,Não informado,Colinas,Não informado,None,0328,040,Não informado,Não informado,,Casado,Feminino,Não informado,Nenhuma observação,1997-10-23,2024-10-01
@@ -1388,11 +1391,11 @@ id,lider,nome,endereco,bairro,celular,titulo_eleitoral,secao,zona_eleitoral,esco
 1448,Anne Taiane,Patrício cardoso costa,Não informado,Colinas,Não informado,None,0058,040,Não informado,Não informado,,Casado,Feminino,Empregado,Nenhuma observação,1998-04-17,2024-10-01
 1449,Anne Taiane,Marlene rodrigues de lima,Não informado,Colinas,Não informado,None,0315,040,Não informado,Não informado,,Solteiro,Feminino,Empregado,Nenhuma observação,1978-11-16,2024-10-01
 1450,Maicon,Danieson dos santos louzada,Não informado,Matinha,Não informado,075576421325,0041,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1998-11-04,2024-10-01
-1451,Maicon,Francisco alexandre pereira de carvalho,Não informado,Matinha,Não informado,036931001341,None,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1984-11-21,2024-10-01
+1451,Maicon,Francisco alexandre pereira de carvalho,Não informado,Matinha,Não informado,036931001341,Não informado,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1984-11-21,2024-10-01
 1452,Maicon,Carlos alberto martins,Não informado,Cohab,Não informado,042162651333,0284,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1965-04-14,2024-10-01
 1453,Maicon,Joseli rosa da cunha,Não informado,Cohab,Não informado,082190651384,0402,040,Não informado,Não informado,,Solteiro,Feminino,Não informado,Nenhuma observação,2003-09-01,2024-10-01
 1454,Maicon,Edson ribeiro caldas,Não informado,Cohab,Não informado,032798941368,0223,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1972-01-24,2024-10-01
-1455,Maicon,Augusto gabriel sacramento de melo,Não informado,Cohab,Não informado,087670661368,None,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,2004-05-15,2024-10-01
+1455,Maicon,Augusto gabriel sacramento de melo,Não informado,Cohab,Não informado,087670661368,Não informado,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,2004-05-15,2024-10-01
 1456,Maicon,Daniel augusto braga dos santos,Não informado,Cohab,Não informado,083197221325,0064,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,2004-02-25,2024-10-01
 1457,Maicon,Edivaldo valente,Não informado,Cohab,Não informado,067771221309,None,040,Não informado,Não informado,,Solteiro,Masculino,Não informado,Nenhuma observação,1995-05-01,2024-10-01
 1458,Maicon,Alessandra serrão,Não informado,Santa Isabel,94999698838,041307941317,0090,040,Não informado,Não informado,,Casado,Feminino,Não informado,Nenhuma observação,,2024-10-01
