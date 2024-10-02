@@ -1,6 +1,5 @@
-import psycopg2
 from fpdf import FPDF
-import os
+import psycopg2
 
 # Configurações da conexão ao PostgreSQL
 conn = psycopg2.connect(
@@ -17,10 +16,13 @@ cur = conn.cursor()
 # Consulta SQL para obter nome, telefone, título e seção de cada eleitor
 cur.execute("""
     SELECT nome, celular, titulo_eleitoral, secao
-    FROM cadastroeleitoral
+    FROM cadastro_eleitoral_v6
     ORDER BY nome ASC
 """)
 results = cur.fetchall()
+
+# Contagem total de eleitores
+total_eleitores = len(results)
 
 # Cria o PDF geral
 pdf = FPDF()
@@ -31,6 +33,11 @@ pdf.set_font("Arial", size=7)  # Definir o tamanho da fonte
 pdf.cell(200, 10, txt="Relatório Geral de Eleitores", ln=True, align='C')
 pdf.ln(10)  # Adicionar uma linha em branco
 
+# Adicionar a contagem total de eleitores no início do PDF
+pdf.set_font("Arial", size=10)
+pdf.cell(200, 10, txt=f"Total de Eleitores: {total_eleitores}", ln=True, align='C')
+pdf.ln(10)
+
 # Definir a largura de cada coluna
 largura_nome = 50
 largura_telefone = 30
@@ -39,32 +46,24 @@ largura_secao = 30
 
 # Adicionar cabeçalhos das colunas
 pdf.set_font("Arial", style='B', size=7)  # Fonte em negrito para cabeçalhos
-pdf.cell(largura_nome, 10, txt="Nome", border=1, align='C')
-pdf.cell(largura_telefone, 10, txt="Telefone", border=1, align='C')
-pdf.cell(largura_titulo, 10, txt="Título", border=1, align='C')
-pdf.cell(largura_secao, 10, txt="Seção", border=1, align='C')
-pdf.ln(10)
+pdf.cell(largura_nome, 10, 'Nome', 1)
+pdf.cell(largura_telefone, 10, 'Celular', 1)
+pdf.cell(largura_titulo, 10, 'Título Eleitoral', 1)
+pdf.cell(largura_secao, 10, 'Seção', 1)
+pdf.ln()
 
-# Resetar a fonte para os dados
+# Adicionar os dados dos eleitores ao PDF
 pdf.set_font("Arial", size=7)
-
-# Adicionar os dados de cada eleitor no PDF
 for row in results:
-    nome, celular, titulo, secao = row
-    pdf.cell(largura_nome, 8, txt=nome, border=1)
-    pdf.cell(largura_telefone, 8, txt=celular if celular else "Não informado", border=1)
-    pdf.cell(largura_titulo, 8, txt=titulo, border=1)
-    pdf.cell(largura_secao, 8, txt=secao, border=1)
-    pdf.ln(8)
+    pdf.cell(largura_nome, 10, row[0], 1)
+    pdf.cell(largura_telefone, 10, row[1], 1)
+    pdf.cell(largura_titulo, 10, row[2], 1)
+    pdf.cell(largura_secao, 10, row[3], 1)
+    pdf.ln()
 
-# Salva o PDF na pasta especificada
-output_folder = "relatorios_gerais"
-os.makedirs(output_folder, exist_ok=True)
-pdf_file_path = os.path.join(output_folder, "relatorio_geral_eleitores.pdf")
-pdf.output(pdf_file_path)
+# Salvar o PDF em um arquivo
+pdf.output("relatorio_geral_eleitores.pdf")
 
-print(f"PDF geral gerado: {pdf_file_path}")
-
-# Fecha a conexão com o banco de dados
+# Fechar a conexão com o banco de dados
 cur.close()
 conn.close()
