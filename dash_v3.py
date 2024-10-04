@@ -34,7 +34,7 @@ meta_votos = 1600
 quantidade_total_eleitores = df['id'].nunique()
 
 # Calcular a porcentagem de votos atingidos em relação ao total de eleitores
-porcentagem_atingida = (quantidade_total_eleitores / meta_votos) * 100
+#porcentagem_atingida = (quantidade_total_eleitores / meta_votos) * 100
 
 # Carregar a logo na barra lateral
 st.sidebar.image("logo_patielen.png", width=200)
@@ -68,7 +68,7 @@ if selected_lider:
 quantidade_eleitores_filtrados = df_filtered['id'].nunique()
 
 # Calcular quantos votos faltam para atingir a meta
-votos_faltando = meta_votos - quantidade_total_eleitores
+#votos_faltando = meta_votos - quantidade_total_eleitores
 
 st.image("logo_patielen.png", width=100)
 
