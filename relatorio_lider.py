@@ -18,16 +18,17 @@ cur = conn.cursor()
 # Lista de nomes dos líderes
 lideres = [
     "Ana Carla Lopes", "Ana Carla Nunes", "Ana Carolina", "Ana Paula da Silva", 
-    "Anne Taiane", "Artur Lopes", "Baidem", "Cleidiane Paixão", "Cleudilene Mota", 
-    "Daine", "Dudita", "Edilson", "Edilson Negão", "Eduardo", "Elias Requel Costa", 
-    "Faate", "Flávia Gava", "Helenio", "Ieda", "Ilda", "Jackson Lima", "Joana Lopes", 
-    "João Thiago", "Jordana", "Josiene Lobato", "Keila Ribeiro", "Laila Maciel", 
-    "Luiz Fernando Freitas dos Santos", "Lula Leal", "Madalena", "Maicon", "Marcos Pereira", 
-    "Maria Maciel", "Marinaldo Caldas Ramos", "Martha Isla", "Matheus Andrade", 
+    "Anne Taiane", "Artur Lopes", "Baidem", "Cleidiane Paixao", "Cleidiane Paixão", 
+    "Cleudilene Mota", "Daine", "Dudita", "Edilson", "Edilson Negão", "Eduardo", 
+    "Elias Requel Costa", "Faate", "Flávia Gava", "Helenio", "Ieda", "Ilda", 
+    "Jackson Lima", "Joana Lopes", "João Thiago", "Jordana", "Josiene Lobato", 
+    "Keila Ribeiro", "Kelliany", "Laila Maciel", "Luiz Fernando Freitas dos Santos", 
+    "Lula Leal", "Madalena", "Maicon", "Marcelina", "Marcos Pereira", "Maria Maciel", 
+    "Marinaldo Caldas Ramos", "Martha Isla", "Matheus Andrade", "Natasha Kretzsechmar", 
     "Pastor Marcos", "Paulinha", "Priscila", "Rafael Cohen", "Raimunda", "Raimundo", 
-    "Ribamar", "Ronilson", "Sidne", "Sidney Guimarães", "SOS", "Taciana", 
-    "Tacilene Ramos", "Taiara", "Valdiney Siqueira", "Vanuza Costa", "Vinícius Santos", 
-    "Wericley Maciel", "Wivila", "Zilzane de Sousa"
+    "Ribamar", "Ronilson", "Roseana", "Sidney Guimarães", "SOS", "Taciana", 
+    "Tacilene Ramos", "Taiara", "Valdinei", "Valdiney Siqueira", "Vanuza Costa", 
+    "Vinícius Santos", "Wericley Maciel", "Wivila", "Zilzane de Sousa"
 ]
 
 # Função para criar o PDF com colunas e formato de tabela
