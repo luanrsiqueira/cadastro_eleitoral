@@ -77,8 +77,8 @@ st.image("logo_patielen.png", width=100)
 #st.progress(porcentagem_atingida / 100)
 
 # Exibir a porcentagem de votos atingidos e votos faltando
-st.write(f"Patielen está com **{quantidade_total_eleitores}** votos, o que representa **{porcentagem_atingida:.2f}%** da meta de {meta_votos} votos.")
-st.write(f"Faltam **{votos_faltando}** votos para atingir a meta.")
+#st.write(f"Patielen está com **{quantidade_total_eleitores}** votos, o que representa **{porcentagem_atingida:.2f}%** da meta de {meta_votos} votos.")
+#st.write(f"Faltam **{votos_faltando}** votos para atingir a meta.")
 
 # Exibir o número total de eleitores (baseado em filtros)
 st.metric(label="Quantidade Total de Eleitores", value=quantidade_eleitores_filtrados)
