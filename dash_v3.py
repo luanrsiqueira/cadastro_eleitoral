@@ -73,8 +73,8 @@ quantidade_eleitores_filtrados = df_filtered['id'].nunique()
 st.image("logo_patielen.png", width=100)
 
 # Exibir a barra de progresso
-st.subheader("Progresso para Atingir a Meta")
-st.progress(porcentagem_atingida / 100)
+#st.subheader("Progresso para Atingir a Meta")
+#st.progress(porcentagem_atingida / 100)
 
 # Exibir a porcentagem de votos atingidos e votos faltando
 st.write(f"Patielen está com **{quantidade_total_eleitores}** votos, o que representa **{porcentagem_atingida:.2f}%** da meta de {meta_votos} votos.")
